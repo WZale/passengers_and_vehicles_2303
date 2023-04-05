@@ -25,4 +25,22 @@ RSpec.describe Park do
 
     expect(park.vehicles).to eq([vehicle1, vehicle2, vehicle3])
   end
+
+  it 'can list passengers in entering vehicles' do
+    park = Park.new("Cape Cod National Seashore", 40)
+
+    vehicle1 = Vehicle.new("2001", "Honda", "Civic")
+    charlie = Passenger.new({"name" => "Charlie", "age" => 18})
+    jude = Passenger.new({"name" => "Jude", "age" => 20})
+    taylor = Passenger.new({"name" => "Taylor", "age" => 12})
+
+    vehicle1.add_passenger(charlie)
+    vehicle1.add_passenger(jude)
+    vehicle1.add_passenger(taylor)
+
+    park.add_vehicle(vehicle1)
+    expect(park.vehicles).to eq([vehicle1])
+
+    expect(vehicle1.passengers).to eq([charlie, jude, taylor])
+  end
 end
